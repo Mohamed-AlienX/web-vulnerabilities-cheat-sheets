@@ -1,6 +1,6 @@
 # 🛡️ Web Vulnerability Cheatsheets
 
-A structured and practical collection of web security vulnerability cheatsheets designed for **penetration testers**, **bug bounty hunters**, and **security researchers **.
+A structured and practical collection of web security vulnerability cheatsheets designed for **penetration testers**, **bug bounty hunters**, and **security researchers**.
 
 ---
 
