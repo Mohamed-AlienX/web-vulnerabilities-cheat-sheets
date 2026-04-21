@@ -119,6 +119,6 @@ It helps others discover it and supports the project.
 ## 👤 Author
 
 **Mohamed Abd almalek**
-Cyber Security specialist | Bug Bounty Hunter
+Jr Penetration Tester | Bug Bounty Hunter
 
 ---
