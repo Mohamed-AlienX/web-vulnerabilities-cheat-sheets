@@ -7,7 +7,6 @@
 
 ## References:
 
--  file:///E:/Bug%20Bounty/4-Input%20Injection/SQL%20INJECTION/sqli_cheatsheet.html
 -  https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/SQL%20Injection
 ## 📋 TABLE OF CONTENTS
 
