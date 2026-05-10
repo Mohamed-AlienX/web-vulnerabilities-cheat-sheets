@@ -10,15 +10,15 @@ This repository contains well-organised notes and practical references covering 
 
 Each cheatsheet includes:
 
-* 📖 Clear explanation
-* ⚡ Real-world attack techniques
-* 🧪 Example payloads
-* 🔍 Detection methods
-* 🔐 Prevention tips
+*  Clear explanation
+*  Real-world attack techniques
+*  Example payloads
+*  Detection methods
+*  Prevention tips
 
 ---
 
-## 🚧 Project Status
+##  Project Status
 
 > ⚠️ This repository is **actively maintained and continuously evolving**.
 > New vulnerabilities, techniques, and improvements are regularly being added.
