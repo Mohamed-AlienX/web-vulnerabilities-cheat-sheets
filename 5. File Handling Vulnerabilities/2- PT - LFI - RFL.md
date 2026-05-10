@@ -319,7 +319,7 @@ zip://uploads/shell.jpg%23shell.php
 
 ---
 
-## 💡 **7. Pro Tips for WAF Testing 
+## 💡 **7. Pro Tips for WAF Testing** 
 
 1. **Fingerprint the WAF first**  
    ```bash
