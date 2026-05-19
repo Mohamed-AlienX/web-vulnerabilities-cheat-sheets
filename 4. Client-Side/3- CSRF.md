@@ -116,7 +116,7 @@ curl https://target.com/robots.txt
 <script>document.forms[0].submit();</script>
 ```
 
-### *8Token Reuse (Not Session-Bound)**
+### **Token Reuse (Not Session-Bound)**
 ```html
 <!-- Get token from YOUR account, use for victim -->
 <form method="POST" action="https://target.com/change-email">
@@ -251,7 +251,7 @@ Try these in Referer:
 
 ### 🔄 Method Override Bypass
 
-### **POST → GET*8
+### **POST → GET**
 ```html
 <!-- If endpoint accepts GET -->
 <script>
