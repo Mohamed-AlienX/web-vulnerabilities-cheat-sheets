@@ -1,6 +1,6 @@
 
 
-# 🛡️ Rate Limiting Vulnerability Assessment — Ultimate Cheat Sheet
+# 🛡️ Rate Limiting Vulnerability  —  Cheat Sheet
 
 > **Purpose:** Systematic enumeration, testing, and bypass of rate-limiting controls across web applications, APIs, and network services.
 > **Severity Logic:** Critical = Account Takeover / Server Compromise | High = Data Exfiltration / Business Impact | Medium = Operational Disruption / Spam
