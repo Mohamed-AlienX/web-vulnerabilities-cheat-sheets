@@ -1,6 +1,6 @@
 
 
-# 🔐 JWT Attacks Cheat Sheet — Complete Guide
+# 🔐 JWT Attacks  — Cheat Sheet
 
 > **Organized by:** Severity (Critical → High → Medium)  
 > **For:** Bug Bounty & Penetration Testing |
