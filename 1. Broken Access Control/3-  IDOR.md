@@ -657,7 +657,7 @@ Content-Type: application/json
 
 ---
 
-## ✅ Golden Rules (احفظهم)
+## ✅ Golden Rules 
 
 1. **IDOR ≠ numeric ID only** — identifiers can be anything: UUID, email, filename, token
 2. **Identifier = anything that points to a resource**
